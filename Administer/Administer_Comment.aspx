@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administer/Administer.master" AutoEventWireup="true" CodeFile="Administer_Comment.aspx.cs" Inherits="Administer_Administer_Comment" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div class="content">
+    <div class="content">
                 
                 <div class="page-header">
                     <div class="icon">
@@ -21,58 +21,58 @@
                              
                             <div class="data-fluid">
                                   <asp:GridView ID="GridView1" runat="server" cellpadding="0" width="100%" 
-                                    class="table table-hover" AutoGenerateColumns="False" DataKeyNames="UserID"
+                                    class="table table-hover" AutoGenerateColumns="False" DataKeyNames="UserID,BookID,BookReviewID"
                                     DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand"
                                     GridLines="None" AllowPaging="True">
                                     <Columns>
                                         
-                                        <asp:TemplateField HeaderText="测试">
-                                            <HeaderTemplate>
-                                               <input id="cbHeaderChecked" name="cbHeaderChecked" onclick="return SelectChecked()" type="checkbox" /><!--在头部增加CheckBox全选/全消选择框-->
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
-                                               <input id="cbChecked" runat="server" name="cbChecked" type="checkbox" /><!--为绑定的每一行增加选择框-->
-                                               <input id="HiddenSysCode" runat="server" style="width: 193px" type="hidden" value='<%# Eval("BookReviewID")%>' /><!--这行很重要，它在一个隐藏控件里放置了一个字段的值，该字段的值将会在按钮事件处理CheckBox选中项的操作中用到-->
-                                               <input id="UserID_h" runat="server" style="width: 193px" type="hidden" value='<%# Eval("UserID")%>' />
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" />
-                                        </asp:TemplateField>
-
-                                        <asp:HyperLinkField DataNavigateUrlFields="BookReviewID" 
-                                                 DataNavigateUrlFormatString="../PersonalWeb_other/ScanInfo.aspx?HostID={0}" 
-                                                 DataTextField="Content" HeaderText="内容"> 
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
-                                        </asp:HyperLinkField>
-                                        
-                                        <asp:BoundField DataField="DateTime" HeaderText="日期" 
-                                            SortExpression="DateTime" >
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        <asp:BoundField DataField="UserID" HeaderText="UserID" 
+                                            SortExpression="UserID" ReadOnly="True" >
                                         </asp:BoundField>
                                        
-                                        <asp:BoundField DataField="Title" HeaderText="图书名" 
-                                            SortExpression="[Book].Title">
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" />
+                                        <asp:BoundField DataField="Password" HeaderText="Password" 
+                                            SortExpression="Password">
                                         </asp:BoundField>
                                         
-                                        <asp:BoundField DataField="Name" HeaderText="作者" 
+                                        <asp:BoundField DataField="Name" HeaderText="Name" 
                                             SortExpression="Name">
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" />
                                         </asp:BoundField>
 
-                                        <asp:TemplateField ShowHeader="False">
-                                             <ItemTemplate>  
-                                                <asp:Button ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Del"  
-                                                       Text="删除" CssClass="btn btn_success" CommandArgument= '<%#Eval("BookReviewID")%>'></asp:Button>  
-                                                </ItemTemplate>  
-                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField ShowHeader="False">
-                                             <ItemTemplate>  
-                                                <asp:Button ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Scan"  
-                                                       Text="查看详细信息" CssClass="btn" CommandArgument= '<%#Eval("BookReviewID")%>'></asp:Button>  
-                                                </ItemTemplate>  
-                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
-                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Sex" HeaderText="Sex" SortExpression="Sex" />
+                                        <asp:BoundField DataField="UserImagePath" HeaderText="UserImagePath" SortExpression="UserImagePath" />
+                                        <asp:BoundField DataField="Birthday" HeaderText="Birthday" SortExpression="Birthday" />
+                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                                        <asp:BoundField DataField="BriefIntroduction" HeaderText="BriefIntroduction" SortExpression="BriefIntroduction" />
+                                        <asp:BoundField DataField="Identity" HeaderText="Identity" SortExpression="Identity" />
+                                        <asp:BoundField DataField="QuanZiID" HeaderText="QuanZiID" SortExpression="QuanZiID" />
+                                        <asp:BoundField DataField="Signature" HeaderText="Signature" SortExpression="Signature" />
+                                        <asp:BoundField DataField="SecurityQ" HeaderText="SecurityQ" SortExpression="SecurityQ" />
+                                        <asp:BoundField DataField="SecurityA" HeaderText="SecurityA" SortExpression="SecurityA" />
+                                        <asp:BoundField DataField="FavBookCate" HeaderText="FavBookCate" SortExpression="FavBookCate" />
+                                        <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
+                                        <asp:BoundField DataField="BookID" HeaderText="BookID" InsertVisible="False" ReadOnly="True" SortExpression="BookID" />
+                                        <asp:BoundField DataField="UserID1" HeaderText="UserID1" SortExpression="UserID1" />
+                                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
+                                        <asp:BoundField DataField="Author" HeaderText="Author" SortExpression="Author" />
+                                        <asp:BoundField DataField="ISBN" HeaderText="ISBN" SortExpression="ISBN" />
+                                        <asp:BoundField DataField="Category" HeaderText="Category" SortExpression="Category" />
+                                        <asp:BoundField DataField="Publisher" HeaderText="Publisher" SortExpression="Publisher" />
+                                        <asp:BoundField DataField="DoubanLink" HeaderText="DoubanLink" SortExpression="DoubanLink" />
+                                        <asp:BoundField DataField="CoverImagePath" HeaderText="CoverImagePath" SortExpression="CoverImagePath" />
+                                        <asp:BoundField DataField="SourcePath" HeaderText="SourcePath" SortExpression="SourcePath" />
+                                        <asp:BoundField DataField="BriefIntroduction1" HeaderText="BriefIntroduction1" SortExpression="BriefIntroduction1" />
+                                        <asp:BoundField DataField="Score" HeaderText="Score" SortExpression="Score" />
+                                        <asp:BoundField DataField="EvaluationNumbers" HeaderText="EvaluationNumbers" SortExpression="EvaluationNumbers" />
+                                        <asp:BoundField DataField="BookReviewID" HeaderText="BookReviewID" InsertVisible="False" ReadOnly="True" SortExpression="BookReviewID" />
+                                        <asp:BoundField DataField="BookID1" HeaderText="BookID1" SortExpression="BookID1" />
+                                        <asp:BoundField DataField="UserID2" HeaderText="UserID2" SortExpression="UserID2" />
+                                        <asp:BoundField DataField="Content" HeaderText="Content" SortExpression="Content" />
+                                        <asp:BoundField DataField="DateTime" HeaderText="DateTime" SortExpression="DateTime" />
+                                        <asp:BoundField DataField="Score1" HeaderText="Score1" SortExpression="Score1" />
+                                        <asp:BoundField DataField="EvaluationNumbers1" HeaderText="EvaluationNumbers1" SortExpression="EvaluationNumbers1" />
+                                        <asp:BoundField DataField="Title1" HeaderText="Title1" SortExpression="Title1" />
+                                        <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />
+                                        <asp:BoundField DataField="BookName" HeaderText="BookName" SortExpression="BookName" />
                                         
                                     </Columns>
                                     <PagerSettings Mode="NumericFirstLast" />
@@ -96,7 +96,7 @@
      </PagerTemplate>
      </asp:GridView>
      <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
            SelectCommand="SELECT * FROM [User],[Book],[BookReview] WHERE [User].[UserID] = [BookReview].[UserID] AND [Book].[BookID] = [BookReview].[BookID]">
      </asp:SqlDataSource>
                             </div> 
