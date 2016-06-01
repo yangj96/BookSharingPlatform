@@ -24,21 +24,17 @@
                                     DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand"
                                     GridLines="None">
                                     <Columns>
-                                        <asp:HyperLinkField DataNavigateUrlFields="ForumID" 
-                                                 DataNavigateUrlFormatString="Forum.aspx?ForumID={0}" 
-                                                 DataTextField="Theme" HeaderText="讨论主题"> 
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
-                                        </asp:HyperLinkField>
                                         
-                                        <asp:BoundField DataField="DateTime" HeaderText="时间" 
-                                            SortExpression="DateTime" >
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        <asp:BoundField DataField="ForumID" HeaderText="ForumID" 
+                                            SortExpression="ForumID" InsertVisible="False" ReadOnly="True" >
                                         </asp:BoundField>
 
-                                        <asp:BoundField DataField="Name" HeaderText="发帖人" 
-                                            SortExpression="Name" >
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        <asp:BoundField DataField="Theme" HeaderText="Theme" 
+                                            SortExpression="Theme" >
                                         </asp:BoundField>
+                                        
+                                        <asp:BoundField DataField="DateTime" HeaderText="DateTime" SortExpression="DateTime" />
+                                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                                         
                                     </Columns>
                                     <PagerSettings Mode="NumericFirstLast" />
@@ -62,7 +58,7 @@
      </PagerTemplate>
      </asp:GridView>
      <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
            SelectCommand="SELECT [Forum].[ForumID],[Forum].Theme,[Forum].[DateTime],[User].Name FROM
         [User],[Forum] WHERE [User].[UserID] = [Forum].[UserID]
         AND [Forum].[QuanZiID] = @QuanZiID">

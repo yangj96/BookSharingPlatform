@@ -68,42 +68,29 @@
                                     DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand"
                                     GridLines="None" AllowPaging="True" PageSize="5">
                                     <Columns>
-                                        <asp:HyperLinkField DataNavigateUrlFields="UserID" 
-                                                 DataNavigateUrlFormatString="../PersonalWeb_other/ScanInfo.aspx?HostID={0}" 
-                                                 DataTextField="UserID" HeaderText="账号"> 
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
-                                            Width="30%"/>
-                                        </asp:HyperLinkField>
                                         
-                                        <asp:BoundField DataField="Name" HeaderText="姓名" 
-                                            SortExpression="Name" >
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
-                                            Width="30%"/>
+                                        <asp:BoundField DataField="UserID" HeaderText="UserID" 
+                                            SortExpression="UserID" ReadOnly="True" >
                                         </asp:BoundField>
                                        
-                                        <asp:BoundField DataField="Sex" HeaderText="性别" 
-                                            SortExpression="Sex">
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
-                                            Width="20%" />
+                                        <asp:BoundField DataField="Password" HeaderText="Password" 
+                                            SortExpression="Password">
                                         </asp:BoundField>
 
                                        
-                                        <asp:TemplateField ShowHeader="True" HeaderText="操作">
-                                             <ItemTemplate>  
-                                                <asp:Button ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Scan"  
-                                                       Text="详细信息" CssClass="btn btn-success" CommandArgument= '<%#Eval("UserID")%>'></asp:Button>  
-                                                </ItemTemplate>  
-                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
-                                                 Width="10%"/>
-                                        </asp:TemplateField>
-                                         <asp:TemplateField ShowHeader="False">
-                                             <ItemTemplate>  
-                                                <asp:Button ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Del"  
-                                                      Text="删除" CssClass="btn btn-warning" CommandArgument= '<%#Eval("UserID")%>'></asp:Button>  
-                                                </ItemTemplate>  
-                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
-                                                 Width="10%"/>
-                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                                        <asp:BoundField DataField="Sex" HeaderText="Sex" SortExpression="Sex" />
+                                        <asp:BoundField DataField="UserImagePath" HeaderText="UserImagePath" SortExpression="UserImagePath" />
+                                        <asp:BoundField DataField="Birthday" HeaderText="Birthday" SortExpression="Birthday" />
+                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                                        <asp:BoundField DataField="BriefIntroduction" HeaderText="BriefIntroduction" SortExpression="BriefIntroduction" />
+                                        <asp:BoundField DataField="Identity" HeaderText="Identity" SortExpression="Identity" />
+                                        <asp:BoundField DataField="QuanZiID" HeaderText="QuanZiID" SortExpression="QuanZiID" />
+                                        <asp:BoundField DataField="Signature" HeaderText="Signature" SortExpression="Signature" />
+                                        <asp:BoundField DataField="SecurityQ" HeaderText="SecurityQ" SortExpression="SecurityQ" />
+                                        <asp:BoundField DataField="SecurityA" HeaderText="SecurityA" SortExpression="SecurityA" />
+                                        <asp:BoundField DataField="FavBookCate" HeaderText="FavBookCate" SortExpression="FavBookCate" />
+                                        <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
                                     </Columns>
                                     <PagerSettings Mode="NumericFirstLast" />
                                     <PagerTemplate>
@@ -126,7 +113,7 @@
      </PagerTemplate>
      </asp:GridView>
      <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
            SelectCommand="SELECT * FROM [User] WHERE [User].[QuanZiID] = @QuanZiID AND [User].[Identity] != '教师'">
            <SelectParameters>
              <asp:SessionParameter Name="QuanZiID" SessionField="QuanZiID" Type="Int16" />
