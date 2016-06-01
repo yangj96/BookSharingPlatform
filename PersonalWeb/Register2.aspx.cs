@@ -21,10 +21,10 @@ public partial class PersonalWeb_Register2 : System.Web.UI.Page
 
         if (Session["Identity"] != "教师")
         {
-            if (gra_10.Checked) Session["Grade"] = "2010";
-            else if (gra_11.Checked) Session["Grade"] = "2011";
-            else if (gra_12.Checked) Session["Grade"] = "2012";
-            else Session["Grade"] = "2013";
+            if (gra_12.Checked) Session["Grade"] = "2012";
+            else if (gra_13.Checked) Session["Grade"] = "2013";
+            else if (gra_14.Checked) Session["Grade"] = "2014";
+            else Session["Grade"] = "2015";
         }
 
         Session["Birthday"] = birth.Value;

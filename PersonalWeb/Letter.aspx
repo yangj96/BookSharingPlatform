@@ -23,15 +23,14 @@
                                      OnRowCommand="GridView1_RowCommand"
                                     GridLines="None" DataSourceID="SqlDataSource1">
                                     <Columns>
-                                        <asp:HyperLinkField DataNavigateUrlFields="HyperLink"
-                                                 DataTextField="Title" HeaderText="站内信内容"> 
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
-                                        </asp:HyperLinkField>
                                         
-                                        <asp:BoundField DataField="DateTime" HeaderText="时间" 
-                                            SortExpression="DateTime" >
-                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        <asp:BoundField DataField="LetterID" HeaderText="LetterID" 
+                                            SortExpression="LetterID" InsertVisible="False" ReadOnly="True" >
                                         </asp:BoundField>
+                                        <asp:BoundField DataField="UserID" HeaderText="UserID" SortExpression="UserID" />
+                                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
+                                        <asp:BoundField DataField="HyperLink" HeaderText="HyperLink" SortExpression="HyperLink" />
+                                        <asp:BoundField DataField="DateTime" HeaderText="DateTime" SortExpression="DateTime" />
                                     </Columns>
                                     <PagerSettings Mode="NumericFirstLast" />
                                     <PagerTemplate>
@@ -54,7 +53,7 @@
      </PagerTemplate>
      </asp:GridView>
                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                                    ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
+                                    ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
                                     SelectCommand="SELECT * FROM [Letter] WHERE ([UserID] = @UserID)">
                                     <SelectParameters>
                                         <asp:SessionParameter Name="UserID" SessionField="UserID" Type="String" />

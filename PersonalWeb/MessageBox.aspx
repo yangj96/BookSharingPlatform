@@ -102,7 +102,7 @@
      </PagerTemplate>
      </asp:GridView>
        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
            SelectCommand="SELECT * FROM [User], [LeaveMessage] WHERE [User].[UserID] = [LeaveMessage].[UserID]
                           AND [LeaveMessage].[HostID] = @UserID">
            <SelectParameters>

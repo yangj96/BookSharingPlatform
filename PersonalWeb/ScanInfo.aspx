@@ -59,10 +59,10 @@
                                 <div class="span2"><font size="2">年级</font></div>
                                 <div class="span2">
                                         <select id="sel" runat="server" name="s_example" class="select" >
-                                            <option value="0">2010</option>
-                                            <option value="1">2011</option>
-                                            <option value="2">2012</option>
-                                            <option value="3">2013</option>                                                                     
+                                            <option value="0">2012</option>
+                                            <option value="1">2013</option>
+                                            <option value="2">2014</option>
+                                            <option value="3">2015</option>                                                                     
                                         </select>
                                 </div>
                             </div>

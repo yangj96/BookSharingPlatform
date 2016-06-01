@@ -106,10 +106,10 @@
                                 <div class="row-form">
                                     <div class="span3"><font size="2">年级</font></div>
                                     <div class="span9">
-                                        <input id="gra_10" runat="server" type="radio" checked="true" name="r_example2" value="1"/><font size="2">12级</font>
-                                        <input id="gra_11" runat="server" type="radio" name="r_example2" value="2"/><font size="2">13级</font>
-                                        <input id="gra_12" runat="server" type="radio" name="r_example2" value="3"/><font size="2">14级</font>
-                                        <input id="gra_13" runat="server" type="radio" name="r_example2" value="4"/><font size="2">15级</font>
+                                        <input id="gra_12" runat="server" type="radio" checked="true" name="r_example2" value="1"/><font size="2">12级</font>
+                                        <input id="gra_13" runat="server" type="radio" name="r_example2" value="2"/><font size="2">13级</font>
+                                        <input id="gra_14" runat="server" type="radio" name="r_example2" value="3"/><font size="2">14级</font>
+                                        <input id="gra_15" runat="server" type="radio" name="r_example2" value="4"/><font size="2">15级</font>
                                     </div>
                                     <div class="span3" ><font color="red" size="2">(老师可以不用选择)</font></div>
                                 </div>
