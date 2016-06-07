@@ -41,37 +41,37 @@
                             <div class="data-fluid">
                                 <br />
                                 <<asp:GridView ID="GridView1" runat="server" cellpadding="0" width="100%" 
-                                    class="table table-hover" AutoGenerateColumns="False" DataKeyNames="UserID,LeaveMessageID"
+                                    class="table table-hover" AutoGenerateColumns="False" DataKeyNames="LeaveMessageID"
                                     DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand"
                                     GridLines="None" AllowPaging="True" PageSize="5">
                                     <Columns>
+                                        <asp:HyperLinkField DataNavigateUrlFields="UserID" 
+                                                 DataNavigateUrlFormatString="../PersonalWeb_other/PersonalHome_other.aspx?HostID={0}" 
+                                                 DataTextField="Name" HeaderText="姓名">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
+                                            Width="15%"/>
+                                        </asp:HyperLinkField>
 
-                                        <asp:BoundField DataField="UserID" HeaderText="UserID" 
-                                            SortExpression="UserID" ReadOnly="True" >
+                                        <asp:BoundField DataField="Content" HeaderText="留言" 
+                                            SortExpression="Content" >
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
+                                            Width="30%"/>
                                         </asp:BoundField>
                                        
-                                        <asp:BoundField DataField="Password" HeaderText="Password" 
-                                            SortExpression="Password">
+                                        <asp:BoundField DataField="DateTime" HeaderText="日期" 
+                                            SortExpression="Datetime">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
+                                            Width="35%" />
                                         </asp:BoundField>
                                       
-                                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                                        <asp:BoundField DataField="Sex" HeaderText="Sex" SortExpression="Sex" />
-                                        <asp:BoundField DataField="UserImagePath" HeaderText="UserImagePath" SortExpression="UserImagePath" />
-                                        <asp:BoundField DataField="Birthday" HeaderText="Birthday" SortExpression="Birthday" />
-                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                        <asp:BoundField DataField="BriefIntroduction" HeaderText="BriefIntroduction" SortExpression="BriefIntroduction" />
-                                        <asp:BoundField DataField="Identity" HeaderText="Identity" SortExpression="Identity" />
-                                        <asp:BoundField DataField="QuanZiID" HeaderText="QuanZiID" SortExpression="QuanZiID" />
-                                        <asp:BoundField DataField="Signature" HeaderText="Signature" SortExpression="Signature" />
-                                        <asp:BoundField DataField="SecurityQ" HeaderText="SecurityQ" SortExpression="SecurityQ" />
-                                        <asp:BoundField DataField="SecurityA" HeaderText="SecurityA" SortExpression="SecurityA" />
-                                        <asp:BoundField DataField="FavBookCate" HeaderText="FavBookCate" SortExpression="FavBookCate" />
-                                        <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
-                                        <asp:BoundField DataField="LeaveMessageID" HeaderText="LeaveMessageID" InsertVisible="False" ReadOnly="True" SortExpression="LeaveMessageID" />
-                                        <asp:BoundField DataField="UserID1" HeaderText="UserID1" SortExpression="UserID1" />
-                                        <asp:BoundField DataField="HostID" HeaderText="HostID" SortExpression="HostID" />
-                                        <asp:BoundField DataField="Content" HeaderText="Content" SortExpression="Content" />
-                                        <asp:BoundField DataField="DateTime" HeaderText="DateTime" SortExpression="DateTime" />
+                                        <asp:TemplateField ShowHeader="true" HeaderText="操作">
+                                             <ItemTemplate>  
+                                                <asp:Button ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Reply"  
+                                                       Text="回复" CommandArgument= '<%#Eval("Name")%>' CssClass="btn btn-primary"></asp:Button>  
+                                                </ItemTemplate>  
+                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
+                                                 Width="10%"/>
+                                        </asp:TemplateField>
            
                                     </Columns>
                                     <PagerSettings Mode="NumericFirstLast" />
@@ -95,7 +95,7 @@
      </PagerTemplate>
      </asp:GridView>
        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
            SelectCommand="SELECT * FROM [User], [LeaveMessage] WHERE [User].[UserID] = [LeaveMessage].[UserID]
                           AND [LeaveMessage].[HostID] = @UserID">
            <SelectParameters>
