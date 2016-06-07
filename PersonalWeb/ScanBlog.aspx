@@ -93,30 +93,28 @@ function BodyOnLoad()
                                 <asp:GridView ID="GridView1" runat="server" cellpadding="0" width="100%" 
                                     class="table" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" 
                                     AllowPaging="True" OnRowCommand="GridView1_RowCommand" GridLines="None" 
-                                    PageSize="5" DataKeyNames="UserID,BlogCommentID">
+                                    PageSize="5">
                                     <Columns>
-                                        <asp:BoundField HeaderText="UserID" DataField="UserID" ReadOnly="True" SortExpression="UserID" />
-                                        <asp:BoundField HeaderText="Password" DataField="Password" SortExpression="Password" >
+                                        <asp:BoundField HeaderText="CommenID" />
+                                        <asp:HyperLinkField DataNavigateUrlFields="UserID" 
+                                                 DataNavigateUrlFormatString="~/PersonalWeb_other/PersonalHome_other.aspx?HostID={0}" 
+                                                 DataTextField="Name" HeaderText="姓名" >
+                                        <ItemStyle Width="20%" />
+                                        </asp:HyperLinkField>
+                                        <asp:BoundField HeaderText="评论" DataField="Content" >
+                                        <ItemStyle Width="45%" />
                                         </asp:BoundField>
-                                        <asp:BoundField HeaderText="Name" DataField="Name" SortExpression="Name" >
+                                        <asp:BoundField HeaderText="时间" DataField="DateTime" >
+                                        <ItemStyle Width="20%" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Sex" HeaderText="Sex" SortExpression="Sex" />
-                                        <asp:BoundField DataField="UserImagePath" HeaderText="UserImagePath" SortExpression="UserImagePath" />
-                                        <asp:BoundField DataField="Birthday" HeaderText="Birthday" SortExpression="Birthday" />
-                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                        <asp:BoundField DataField="BriefIntroduction" HeaderText="BriefIntroduction" SortExpression="BriefIntroduction" />
-                                        <asp:BoundField DataField="Identity" HeaderText="Identity" SortExpression="Identity" />
-                                        <asp:BoundField DataField="QuanZiID" HeaderText="QuanZiID" SortExpression="QuanZiID" />
-                                        <asp:BoundField DataField="Signature" HeaderText="Signature" SortExpression="Signature" />
-                                        <asp:BoundField DataField="SecurityQ" HeaderText="SecurityQ" SortExpression="SecurityQ" />
-                                        <asp:BoundField DataField="SecurityA" HeaderText="SecurityA" SortExpression="SecurityA" />
-                                        <asp:BoundField DataField="FavBookCate" HeaderText="FavBookCate" SortExpression="FavBookCate" />
-                                        <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
-                                        <asp:BoundField DataField="BlogCommentID" HeaderText="BlogCommentID" InsertVisible="False" ReadOnly="True" SortExpression="BlogCommentID" />
-                                        <asp:BoundField DataField="BlogID" HeaderText="BlogID" SortExpression="BlogID" />
-                                        <asp:BoundField DataField="UserID1" HeaderText="UserID1" SortExpression="UserID1" />
-                                        <asp:BoundField DataField="Content" HeaderText="Content" SortExpression="Content" />
-                                        <asp:BoundField DataField="DateTime" HeaderText="DateTime" SortExpression="DateTime" />
+                                        <asp:TemplateField ShowHeader="True" HeaderText="操作">
+                                             <ItemTemplate>
+                                                <asp:Button ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Del"  
+                                                       Text="删除" CommandArgument= '<%#Eval("BlogCommentID")%>' CssClass="btn success"></asp:Button>  
+                                             </ItemTemplate>  
+                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" 
+                                                 Width="15%"/>
+                                        </asp:TemplateField>
                                     </Columns>
                                                        <PagerSettings Mode="NumericFirstLast" />
                                     <PagerTemplate></div></div>
@@ -142,7 +140,7 @@ function BodyOnLoad()
                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server"
                                 SelectCommand="SELECT * FROM [User], [BlogComment] WHERE
                                                [User].[UserID] = [BlogComment].[UserID] AND [BlogID] = @BlogID" 
-                                Connectionstring="<%$ ConnectionStrings:BookSharingConnectionString %>">
+                                Connectionstring="<%$ ConnectionStrings: BookSharingPlatformConnectionString%>">
                                 <SelectParameters>
                                  <asp:SessionParameter Name="BlogID" SessionField="BlogID" Type="String" />
                                 </SelectParameters>

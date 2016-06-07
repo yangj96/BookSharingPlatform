@@ -31,18 +31,22 @@
                                     DataSourceID="SqlDataSource1" AllowPaging="True"
                                     GridLines="None">
                                     <Columns>
+                                        <asp:HyperLinkField DataNavigateUrlFields="UserID" 
+                                                 DataNavigateUrlFormatString="../PersonalWeb_other/PersonalHome_other.aspx?HostID={0}" 
+                                                 DataTextField="Name" HeaderText="姓名">
+                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        </asp:HyperLinkField>
                                        
-                                        <asp:BoundField DataField="Name" HeaderText="Name" 
+                                        <asp:BoundField DataField="UserID" HeaderText="学号" 
                                             SortExpression="Name" >
                                         
                                         </asp:BoundField>
                                        
-                                        <asp:BoundField DataField="UserID" HeaderText="UserID" 
-                                            SortExpression="UserID" ReadOnly="True">
+                                        <asp:BoundField DataField="Sex" HeaderText="性别" 
+                                            SortExpression="Sex">
                                         
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Sex" HeaderText="Sex" SortExpression="Sex" />
-                                        <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
+                                        <asp:BoundField DataField="Grade" HeaderText="年级" SortExpression="Grade" />
                                     </Columns>
                                     <PagerSettings Mode="NumericFirstLast" />
                                     <PagerTemplate>
@@ -65,7 +69,7 @@
      </PagerTemplate>
      </asp:GridView>
        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
            
                                     
                                     
