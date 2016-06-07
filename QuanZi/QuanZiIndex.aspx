@@ -23,34 +23,24 @@
                              
                             <div class="data-fluid">
                                 <asp:GridView ID="GridView1" runat="server" cellpadding="0" width="100%" 
-                                    class="table table-hover" AutoGenerateColumns="False" DataKeyNames="UserID,NewsID"
+                                    class="table table-hover" AutoGenerateColumns="False" DataKeyNames="NewsID"
                                     DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand"
                                     GridLines="None">
                                     <Columns>
 
-                                        <asp:BoundField DataField="UserID" HeaderText="UserID" ReadOnly="True" SortExpression="UserID" >
+                                        <asp:TemplateField ShowHeader="False">
+                                             <ItemTemplate>
+                                             <asp:Image ID="Image1" runat="server" ImageUrl='<%# Bind("UserImagePath") %>'
+                                                  Width="120px" />
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:HyperLinkField DataNavigateUrlFields="HyperLink"
+                                                 DataTextField="Title" HeaderText="新鲜事内容">
+                                        </asp:HyperLinkField>
+
+                                        <asp:BoundField DataField="DateTime" HeaderText="发布时间" >
                                         </asp:BoundField>
-                                                                                
-                                        <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" />
-                                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                                        <asp:BoundField DataField="Sex" HeaderText="Sex" SortExpression="Sex" />
-                                        <asp:BoundField DataField="UserImagePath" HeaderText="UserImagePath" SortExpression="UserImagePath" />
-                                        <asp:BoundField DataField="Birthday" HeaderText="Birthday" SortExpression="Birthday" />
-                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                        <asp:BoundField DataField="BriefIntroduction" HeaderText="BriefIntroduction" SortExpression="BriefIntroduction" />
-                                        <asp:BoundField DataField="Identity" HeaderText="Identity" SortExpression="Identity" />
-                                        <asp:BoundField DataField="QuanZiID" HeaderText="QuanZiID" SortExpression="QuanZiID" />
-                                        <asp:BoundField DataField="Signature" HeaderText="Signature" SortExpression="Signature" />
-                                        <asp:BoundField DataField="SecurityQ" HeaderText="SecurityQ" SortExpression="SecurityQ" />
-                                        <asp:BoundField DataField="SecurityA" HeaderText="SecurityA" SortExpression="SecurityA" />
-                                        <asp:BoundField DataField="FavBookCate" HeaderText="FavBookCate" SortExpression="FavBookCate" />
-                                        <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
-                                        <asp:BoundField DataField="NewsID" HeaderText="NewsID" InsertVisible="False" ReadOnly="True" SortExpression="NewsID" />
-                                        <asp:BoundField DataField="QuanZiID1" HeaderText="QuanZiID1" SortExpression="QuanZiID1" />
-                                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                                        <asp:BoundField DataField="UserID1" HeaderText="UserID1" SortExpression="UserID1" />
-                                        <asp:BoundField DataField="DateTime" HeaderText="DateTime" SortExpression="DateTime" />
-                                        <asp:BoundField DataField="HyperLink" HeaderText="HyperLink" SortExpression="HyperLink" />
                                                                                 
                                     </Columns>
                                     <PagerSettings Mode="NumericFirstLast" />
@@ -74,7 +64,7 @@
      </PagerTemplate>
      </asp:GridView>
        <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
            SelectCommand="SELECT * FROM [User],[News] WHERE [User].[UserID] = [News].[UserID] AND [News].[QuanZiID] = @QuanZiID">
            <SelectParameters>
         <asp:SessionParameter Name="QuanZiID" SessionField="QuanZiID" Type="String" />
