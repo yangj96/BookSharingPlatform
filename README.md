@@ -1,2 +1,2 @@
 # BookSharingPlatform
-Software Engineering-homework
+project for Software Engineering course
