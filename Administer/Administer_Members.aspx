@@ -26,30 +26,52 @@
                                     GridLines="None">
                                     <Columns>
                                         
-                                        <asp:BoundField DataField="UserID" HeaderText="UserID" 
-                                            SortExpression="UserID" ReadOnly="True" >
+                                        <asp:TemplateField HeaderText="测试">
+                                            <HeaderTemplate>
+                                               <input id="cbHeaderChecked" name="cbHeaderChecked" onclick="return SelectChecked()" type="checkbox" /><!--在头部增加CheckBox全选/全消选择框-->
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                               <input id="cbChecked" runat="server" name="cbChecked" type="checkbox" /><!--为绑定的每一行增加选择框-->
+                                               <input id="HiddenSysCode" runat="server" style="width: 193px" type="hidden" value='<%# Eval("UserID")%>' /><!--这行很重要，它在一个隐藏控件里放置了一个字段的值，该字段的值将会在按钮事件处理CheckBox选中项的操作中用到-->
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" />
+                                        </asp:TemplateField>
+
+                                        <asp:HyperLinkField DataNavigateUrlFields="UserID" 
+                                                 DataNavigateUrlFormatString="../PersonalWeb_other/ScanInfo.aspx?HostID={0}" 
+                                                 DataTextField="UserID" HeaderText="账号"> 
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        </asp:HyperLinkField>
+                                        
+                                        <asp:BoundField DataField="Name" HeaderText="姓名" 
+                                            SortExpression="Name" >
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
                                         </asp:BoundField>
                                        
-                                        <asp:BoundField DataField="Password" HeaderText="Password" 
-                                            SortExpression="Password">
+                                        <asp:BoundField DataField="Sex" HeaderText="性别" 
+                                            SortExpression="Sex">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" />
                                         </asp:BoundField>
                                         
-                                        <asp:BoundField DataField="Name" HeaderText="Name" 
-                                            SortExpression="Name">
+                                        <asp:BoundField DataField="Identity" HeaderText="身份" 
+                                            SortExpression="Identity">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" />
                                         </asp:BoundField>
 
-                                        <asp:BoundField DataField="Sex" HeaderText="Sex" SortExpression="Sex" />
-                                        <asp:BoundField DataField="UserImagePath" HeaderText="UserImagePath" SortExpression="UserImagePath" />
-                                        <asp:BoundField DataField="Birthday" HeaderText="Birthday" SortExpression="Birthday" />
-                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                        <asp:BoundField DataField="BriefIntroduction" HeaderText="BriefIntroduction" SortExpression="BriefIntroduction" />
-                                        <asp:BoundField DataField="Identity" HeaderText="Identity" SortExpression="Identity" />
-                                        <asp:BoundField DataField="QuanZiID" HeaderText="QuanZiID" SortExpression="QuanZiID" />
-                                        <asp:BoundField DataField="Signature" HeaderText="Signature" SortExpression="Signature" />
-                                        <asp:BoundField DataField="SecurityQ" HeaderText="SecurityQ" SortExpression="SecurityQ" />
-                                        <asp:BoundField DataField="SecurityA" HeaderText="SecurityA" SortExpression="SecurityA" />
-                                        <asp:BoundField DataField="FavBookCate" HeaderText="FavBookCate" SortExpression="FavBookCate" />
-                                        <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
+                                        <asp:TemplateField ShowHeader="False">
+                                             <ItemTemplate>  
+                                                <asp:Button ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Del"  
+                                                       Text="删除" CssClass="btn btn-success" CommandArgument= '<%#Eval("UserID")%>'></asp:Button>  
+                                                </ItemTemplate>  
+                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField ShowHeader="False">
+                                             <ItemTemplate>  
+                                                <asp:Button ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Scan"  
+                                                       Text="查看详细信息" CssClass="btn" CommandArgument= '<%#Eval("UserID")%>'></asp:Button>  
+                                                </ItemTemplate>  
+                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        </asp:TemplateField>
                                         
                                     </Columns>
                                     <PagerSettings Mode="NumericFirstLast" />
@@ -73,7 +95,7 @@
      </PagerTemplate>
      </asp:GridView>
      <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
            SelectCommand="SELECT * FROM [User] WHERE [User].[Identity] != '管理员'">
         </asp:SqlDataSource>
                             </div> 

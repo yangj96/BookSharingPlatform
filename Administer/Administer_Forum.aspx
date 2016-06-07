@@ -17,42 +17,53 @@
                              
                             <div class="data-fluid">
                                   <asp:GridView ID="GridView1" runat="server" cellpadding="0" width="100%" 
-                                    class="table table-hover" AutoGenerateColumns="False" DataKeyNames="UserID,ForumID,ParticipantID"
+                                    class="table table-hover" AutoGenerateColumns="False" DataKeyNames="ParticipantID"
                                     DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand"
                                     GridLines="None" AllowPaging="True">
                                     <Columns>
                                       
-                                        <asp:BoundField DataField="UserID" HeaderText="UserID" 
-                                            SortExpression="UserID" ReadOnly="True">
+                                        <asp:TemplateField HeaderText="测试">
+                                            <HeaderTemplate>
+                                               <input id="cbHeaderChecked" name="cbHeaderChecked" onclick="return SelectChecked()" type="checkbox" /><!--在头部增加CheckBox全选/全消选择框-->
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                               <input id="cbChecked" runat="server" name="cbChecked" type="checkbox" /><!--为绑定的每一行增加选择框-->
+                                               <input id="HiddenSysCode" runat="server" style="width: 193px" type="hidden" value='<%# Eval("ParticipantID")%>' /><!--这行很重要，它在一个隐藏控件里放置了一个字段的值，该字段的值将会在按钮事件处理CheckBox选中项的操作中用到-->
+                                               <input id="UserID_h" runat="server" style="width: 193px" type="hidden" value='<%# Eval("UserID")%>' />
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" />
+                                        </asp:TemplateField>
+                                       
+                                        <asp:TemplateField ShowHeader="False">
+                                             <ItemTemplate>
+                                             <asp:Image ID="Image1" runat="server" ImageUrl='<%# Bind("UserImagePath") %>'
+                                                  Width="50px" />
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                        <asp:HyperLinkField DataNavigateUrlFields="UserID" 
+                                                 DataNavigateUrlFormatString="../PersonalWeb_other/ScanInfo.aspx?HostID={0}" 
+                                                 DataTextField="Name" HeaderText="姓名"> 
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        </asp:HyperLinkField>
+
+                                        <asp:BoundField DataField="Content" HeaderText="内容" 
+                                            SortExpression="Content">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" />
                                         </asp:BoundField>
                                         
-                                        <asp:BoundField DataField="Password" HeaderText="Password" 
-                                            SortExpression="Password">
+                                        <asp:BoundField DataField="DateTime" HeaderText="时间" 
+                                            SortExpression="DateTime">
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1" />
                                         </asp:BoundField>
 
-                                         <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                                        <asp:BoundField DataField="Sex" HeaderText="Sex" SortExpression="Sex" />
-                                        <asp:BoundField DataField="UserImagePath" HeaderText="UserImagePath" SortExpression="UserImagePath" />
-                                        <asp:BoundField DataField="Birthday" HeaderText="Birthday" SortExpression="Birthday" />
-                                        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                                        <asp:BoundField DataField="BriefIntroduction" HeaderText="BriefIntroduction" SortExpression="BriefIntroduction" />
-                                        <asp:BoundField DataField="Identity" HeaderText="Identity" SortExpression="Identity" />
-                                        <asp:BoundField DataField="QuanZiID" HeaderText="QuanZiID" SortExpression="QuanZiID" />
-                                        <asp:BoundField DataField="Signature" HeaderText="Signature" SortExpression="Signature" />
-                                        <asp:BoundField DataField="SecurityQ" HeaderText="SecurityQ" SortExpression="SecurityQ" />
-                                        <asp:BoundField DataField="SecurityA" HeaderText="SecurityA" SortExpression="SecurityA" />
-                                        <asp:BoundField DataField="FavBookCate" HeaderText="FavBookCate" SortExpression="FavBookCate" />
-                                        <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
-                                        <asp:BoundField DataField="ForumID" HeaderText="ForumID" InsertVisible="False" ReadOnly="True" SortExpression="ForumID" />
-                                        <asp:BoundField DataField="Theme" HeaderText="Theme" SortExpression="Theme" />
-                                        <asp:BoundField DataField="UserID1" HeaderText="UserID1" SortExpression="UserID1" />
-                                        <asp:BoundField DataField="DateTime" HeaderText="DateTime" SortExpression="DateTime" />
-                                        <asp:BoundField DataField="QuanZiID1" HeaderText="QuanZiID1" SortExpression="QuanZiID1" />
-                                        <asp:BoundField DataField="ParticipantID" HeaderText="ParticipantID" InsertVisible="False" ReadOnly="True" SortExpression="ParticipantID" />
-                                        <asp:BoundField DataField="ForumID1" HeaderText="ForumID1" SortExpression="ForumID1" />
-                                        <asp:BoundField DataField="UserID2" HeaderText="UserID2" SortExpression="UserID2" />
-                                        <asp:BoundField DataField="DateTime1" HeaderText="DateTime1" SortExpression="DateTime1" />
-                                        <asp:BoundField DataField="Content" HeaderText="Content" SortExpression="Content" />
+                                         <asp:TemplateField ShowHeader="False">
+                                             <ItemTemplate>  
+                                                <asp:Button ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Del"  
+                                                       Text="删除" CssClass="btn" CommandArgument= '<%#Eval("ParticipantID")%>'></asp:Button>  
+                                                </ItemTemplate>  
+                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="class1"/>
+                                        </asp:TemplateField>
                                         
                                     </Columns>
                                     <PagerSettings Mode="NumericFirstLast" />
@@ -76,7 +87,7 @@
      </PagerTemplate>
      </asp:GridView>
      <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
            SelectCommand="SELECT * FROM [User],[Forum],[Participant] WHERE [User].[UserID] = [Participant].[UserID] 
                           AND [Forum].[ForumID] = [Participant].[ForumID] AND [Forum].[ForumID] = @ForumID">
         <SelectParameters>
