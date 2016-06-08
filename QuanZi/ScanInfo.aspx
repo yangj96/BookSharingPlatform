@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/QuanZi/圈子母版页.master" AutoEventWireup="true" CodeFile="ScanInfo.aspx.cs" Inherits="QuanZi_ScanInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div class="content">
+    <div class="content">
                 
                 <div class="page-header">
                     <div class="icon">
@@ -30,7 +30,7 @@
                                     <span>
                                         <div class="span6">
                                         <ul><font size="2px">
-                                            <li>姓名:&nbsp;<asp:TextBox ID="name" runat="server" Text="吕云翔" BackColor="White"></asp:TextBox></li><br \>
+                                            <li>姓名:&nbsp;<asp:TextBox ID="name" runat="server" BackColor="White"></asp:TextBox></li><br \>
                                             <li>性别:&nbsp;<asp:TextBox ID="sex" runat="server" BackColor="White"></asp:TextBox></li><br \>
                                             <li>教授课程:&nbsp;<asp:TextBox ID="course" runat="server" BackColor="White"></asp:TextBox></li><br \>
                                             <li>手机号码:&nbsp;<asp:TextBox ID="tel" runat="server" BackColor="White"></asp:TextBox></li><br \>
@@ -126,7 +126,7 @@
      </PagerTemplate>
      </asp:GridView>
      <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
            SelectCommand="SELECT * FROM [User] WHERE [User].[QuanZiID] = @QuanZiID AND [User].[Identity] != '教师'">
            <SelectParameters>
              <asp:SessionParameter Name="QuanZiID" SessionField="QuanZiID" Type="Int16" />

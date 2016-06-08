@@ -89,7 +89,7 @@
      </PagerTemplate>
      </asp:GridView>
      <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-            ConnectionString="<%$ ConnectionStrings:BookSharingPlatformConnectionString %>" 
+            ConnectionString="<%$ ConnectionStrings:BookSharingConnectionString %>" 
            SelectCommand="SELECT * FROM [User] WHERE [User].[Identity] = '学生'">
         </asp:SqlDataSource>
                             </div> 

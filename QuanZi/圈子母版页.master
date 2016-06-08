@@ -75,10 +75,10 @@
                 <asp:Image ID="UserImage" runat="server" ImageUrl="~/PersonalImage/Default.gif" Width="120" />
                     </a></font></div>
                 <div class="text" align="center"><br \>
-                    <asp:Label ID="Name" runat="server" Text="彭成凯" CssClass="Label" 
+                    <asp:Label ID="Name" runat="server" Text="杨婧" CssClass="Label" 
                         Font-Size="18px" ForeColor="White"></asp:Label> 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    <asp:Label ID="Grade" runat="server" Text="11级本科生" Font-Size="12px" 
+                    <asp:Label ID="Grade" runat="server" Text="14级本科生" Font-Size="12px" 
                         ForeColor="White"></asp:Label>
                     <br />
                 </div>
@@ -88,14 +88,14 @@
                          Font-Size="15px" ForeColor="#FF6600"></asp:Label>
                     <br />
                     <!--<a href="index-2.html" class="blgreen">-->
-                    <asp:Label ID="Signature" runat="server" Text="生活需要阳光" CssClass="Signature" 
+                    <asp:Label ID="Signature" runat="server" Text="暮冬时烤雪 迟夏写长信" CssClass="Signature" 
                          Font-Size="12px" ForeColor="#FF6600"></asp:Label>
                     <br \>
                 </div>
             </div>
                 
             <div class="nContainer">                
-                <ul class="navigation">         
+                <ul class="navigation bordered">         
                     <li class="active"><a href="QuanZiIndex.aspx" class="blred">圈子主页</a></li>
                     <li class="active"><a href="ScanInfo.aspx" class="blblue">圈子信息</a></li>
                     <li class="active"><a href="ForumList.aspx" class="blyellow">讨论区</a></li>

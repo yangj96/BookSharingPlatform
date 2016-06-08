@@ -28,7 +28,7 @@ public partial class QuanZi_ScanInfo : System.Web.UI.Page
                 GridView1.Columns[4].Visible = false;
             }
 
-            //name.Text = user.Name;
+            name.Text = user.Name;
             sex.Text = user.Sex;
             email.Text = user.Email;
             Image1.ImageUrl = user.UserImagePath;
